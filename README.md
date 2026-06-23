@@ -53,3 +53,7 @@ Please provide:
 8. Show how transaction rollback works when an exception occurs.
 
 Assume I am an absolute beginner and explain concepts clearly with examples.
+
+
+Develop a Spring Boot application that demonstrates the Unit of Work pattern using Spring Data JPA and @Transactional.
+A simple User Management module is implemented to illustrate the flow between Controller, Service, Repository, and Database layers.
