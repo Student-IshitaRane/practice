@@ -1,105 +1,31 @@
-System Architecture
+## Key Features & Unique Selling Points
 
-Our project follows a layered architecture based on the Unit of Work design pattern, which separates responsibilities into different layers. This makes the application modular, scalable, and easy to maintain.
+**Centralized User Management**
+"Our application provides a single platform to manage all users instead of maintaining them across multiple systems. Administrators can create, update, and delete users from one place."
 
-The flow of the application is as follows:
+**Role & Rights Management**
+"The system allows administrators to assign application-specific permissions such as read, write, delete, and access rights. This ensures users can perform only the actions they are authorized for."
 
-1. Frontend
+**Department Mapping**
+"Users can be mapped to one or more departments, making it easier to organize employees and control department-specific access."
 
-The user interacts with the SMS Workbench through the web interface.
+**Login Management**
+"Administrators can assign application logins, suspend accounts when required, and reactivate them whenever necessary."
 
-For example, if an administrator wants to create a new user, assign application access, modify user rights, or approve a pending request, the frontend sends an HTTP request to the appropriate backend API.
+**Menu Access Management**
+"Instead of giving access to the entire application, specific menus and modules can be assigned to individual users, providing fine-grained access control."
 
-↓
+**Maker–Checker Workflow**
+"This is one of the core security features of the application. Sensitive operations such as creating users or changing permissions require approval from another authorized person before they become effective. This reduces the risk of mistakes and unauthorized changes."
 
-2. Controller Layer
+**Reports & Audit Trail**
+"The application generates reports such as user reports, maintenance reports, disabled user reports, and user profile reports. These help administrators monitor activities and support compliance requirements."
 
-The request first reaches the corresponding Spring Boot REST Controller.
+**Search & Filtering**
+"Users, applications, departments, and other records can be searched and filtered quickly, making administration more efficient."
 
-Examples include:
+**Swagger API Documentation**
+"All backend REST APIs are available through Swagger, allowing developers and testers to view endpoints, understand request and response formats, and test APIs without using external tools."
 
-UsersController
-RightsController
-DepartmentsController
-LoginsController
-SettingsController
-VerificationsController
-
-The controller's responsibility is very limited:
-
-Receive the request
-Validate required inputs
-Call the appropriate service
-Return the response
-
-No business logic is written inside the controller.
-
-↓
-
-3. Service Layer (Business Logic)
-
-The service layer contains the complete business logic of the application.
-
-Examples include:
-
-User management
-Login assignment
-Rights management
-Department assignment
-Menu access management
-Maker-Checker verification
-Report generation
-
-This layer decides:
-
-Which operation needs to be performed
-What validations are required
-Which repository should be called
-How the returned data should be processed
-
-↓
-
-4. Unit of Work
-
-Instead of services communicating directly with multiple repositories, they interact through a Unit of Work.
-
-The Unit of Work acts as a central coordinator.
-
-It provides access to all repositories and manages database-related operations from a single place.
-
-This keeps services independent from repository implementations and makes the code easier to maintain and extend.
-
-↓
-
-5. Repository Layer
-
-The repository layer is responsible for communicating with the database.
-
-It executes database operations such as:
-
-Fetching users
-Creating users
-Updating user rights
-Assigning applications
-Retrieving reports
-Saving configuration settings
-
-Repositories do not contain business logic.
-Their only responsibility is data access.
-
-↓
-
-6. Database
-
-The database stores all application information, including:
-
-Users
-Departments
-Applications
-Login details
-Access rights
-Menu permissions
-Maker-Checker requests
-Configuration settings
-
-The processed data is then returned back through the Repository → Service → Controller layers before being sent to the frontend.
+**Docker & OpenShift Deployment**
+"The application is containerized using Docker and deployed on Red Hat OpenShift. This enables consistent deployments, easy scalability, high availability, and efficient resource management."
