@@ -1,59 +1,105 @@
-# practice
+System Architecture
 
-I am creating a new Spring Boot project in IntelliJ as a beginner Java developer.
+Our project follows a layered architecture based on the Unit of Work design pattern, which separates responsibilities into different layers. This makes the application modular, scalable, and easy to maintain.
 
-My manager has asked me to create a basic setup of the Unit of Work pattern. I want to implement it using Spring Boot, Spring Data JPA, and @Transactional rather than a custom Java-only implementation.
+The flow of the application is as follows:
 
-Please generate a complete beginner-friendly project structure and explain every step.
+1. Frontend
 
-Requirements:
-- Java 17
-- Spring Boot 3.x
-- Maven
-- Spring Web
-- Spring Data JPA
-- H2 Database
-- Demonstrate Unit of Work using @Transactional
+The user interacts with the SMS Workbench through the web interface.
 
-Project Name:
-sms-workbench
+For example, if an administrator wants to create a new user, assign application access, modify user rights, or approve a pending request, the frontend sends an HTTP request to the appropriate backend API.
 
-Please provide:
+↓
 
-1. Recommended package structure
-   - controller
-   - service
-   - repository
-   - entity
-   - config (if needed)
+2. Controller Layer
 
-2. Complete code for:
-   - Main Application class
-   - User Entity
-   - UserRepository
-   - UserService
-   - UserController
+The request first reaches the corresponding Spring Boot REST Controller.
 
-3. pom.xml dependencies required
+Examples include:
 
-4. application.properties configuration
+UsersController
+RightsController
+DepartmentsController
+LoginsController
+SettingsController
+VerificationsController
 
-5. Explanation of:
-   - What JPA is
-   - What Hibernate is
-   - What a Repository is
-   - What @Transactional does
-   - How @Transactional implements the Unit of Work pattern
+The controller's responsibility is very limited:
 
-6. Example API endpoint that creates a User record
+Receive the request
+Validate required inputs
+Call the appropriate service
+Return the response
 
-7. Explain what happens internally from:
-   Controller → Service → Repository → Database
+No business logic is written inside the controller.
 
-8. Show how transaction rollback works when an exception occurs.
+↓
 
-Assume I am an absolute beginner and explain concepts clearly with examples.
+3. Service Layer (Business Logic)
 
+The service layer contains the complete business logic of the application.
 
-Develop a Spring Boot application that demonstrates the Unit of Work pattern using Spring Data JPA and @Transactional.
-A simple User Management module is implemented to illustrate the flow between Controller, Service, Repository, and Database layers.
+Examples include:
+
+User management
+Login assignment
+Rights management
+Department assignment
+Menu access management
+Maker-Checker verification
+Report generation
+
+This layer decides:
+
+Which operation needs to be performed
+What validations are required
+Which repository should be called
+How the returned data should be processed
+
+↓
+
+4. Unit of Work
+
+Instead of services communicating directly with multiple repositories, they interact through a Unit of Work.
+
+The Unit of Work acts as a central coordinator.
+
+It provides access to all repositories and manages database-related operations from a single place.
+
+This keeps services independent from repository implementations and makes the code easier to maintain and extend.
+
+↓
+
+5. Repository Layer
+
+The repository layer is responsible for communicating with the database.
+
+It executes database operations such as:
+
+Fetching users
+Creating users
+Updating user rights
+Assigning applications
+Retrieving reports
+Saving configuration settings
+
+Repositories do not contain business logic.
+Their only responsibility is data access.
+
+↓
+
+6. Database
+
+The database stores all application information, including:
+
+Users
+Departments
+Applications
+Login details
+Access rights
+Menu permissions
+Maker-Checker requests
+Configuration settings
+
+The processed data is then returned back through the Repository → Service → Controller layers before being sent to the frontend.
