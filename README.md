@@ -127,3 +127,42 @@ Worked on compliance-related documentation and project closure activities.
 Learning Outcome
 Consolidated project knowledge and completed  deliverables.
 
+Contribution to the Team
+Backend
+Successfully migrated legacy .NET backend modules to Java Spring Boot.
+Reduced manual effort for future maintenance through modernized code.
+Frontend
+Redesigned the User Rights Management interface to provide a cleaner and more user-friendly experience.
+Developed reusable React components following Citi UI standards.
+Deployment
+Created Docker and Helm configurations for deployment on OpenShift.
+Assisted in testing backend APIs and resolving deployment issues.
+Business Impact
+Contributed towards modernization of an internal enterprise application.
+Helped improve maintainability and future scalability.
+Supported secure and standardized development practices within the team.
+
+Technical Challenges
+Environment Setup
+Configuring Java, Maven, proxy settings, and enterprise repositories.
+Managing dependencies through .m2 and .npmrc.
+Legacy Migration
+Understanding an unfamiliar .NET codebase before migration.
+Manually converting backend layers while preserving business logic.
+Deployment
+Resolving runtime errors after deployment on OpenShift.
+Working with restricted database access during API testing.
+Frontend
+Enhancing an existing UI while strictly adhering to Citi's design guidelines.
+Building components without third-party UI frameworks.
+
+1. Enterprise Software Development
+Learned the complete software development lifecycle in a large-scale organization.
+Gained experience with deployment, monitoring, testing, and compliance.
+2. Modern Full-Stack Development
+Worked with Java Spring Boot, React, REST APIs, Docker, OpenShift, and JWT authentication.
+Understood enterprise architecture and component-based development.
+3. Problem Solving & Professional Growth
+Learned to debug deployment issues.
+Improved understanding of database optimization and logging.
+Developed the ability to work with legacy systems and enterprise workflows.
